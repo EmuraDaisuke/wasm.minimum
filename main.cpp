@@ -5,12 +5,8 @@
 
 
 
-//#define	WASM_EXPORT	__attribute__((visibility("default")))
-
-
-
 extern "C" {
-void puts(const char* p, std::size_t s);	//js function _puts(p, s)
+void puts(const char* p, std::size_t s);	// js function _puts(p, s)
 }
 
 
@@ -26,11 +22,9 @@ const char* p
 
 
 
-//WASM_EXPORT
 int
 main(
 ){
-	clog("hello");
-	clog("test");
+	clog("hello wasm");
 	return 1;
 }
