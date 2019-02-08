@@ -13,6 +13,14 @@ function abortStackOverflow(){
 	stderr("abortStackOverflow");
 }
 
+function puts(p, s){
+	var array = new Uint8Array(attr.env.memory.buffer, p, s);
+	var text = String.fromCodePoint(...array);
+	stdout(text);
+}
+
+
+
 var attr = {
 	env: {
 		memory: new WebAssembly.Memory({
@@ -31,11 +39,7 @@ var attr = {
 		DYNAMICTOP_PTR: 0,
 		abortStackOverflow: abortStackOverflow,
 		
-		_puts: (p, s) => {
-			const array = new Uint8Array(attr.env.memory.buffer, p, s)
-			const text = String.fromCodePoint(...array)
-			stdout(text)
-		},
+		_puts: puts,
 	},
 	global: {
 		NaN: NaN,
